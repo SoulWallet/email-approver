@@ -1,0 +1,87 @@
+Delivered-To: suneal@soulwallet.io
+Received: by 2002:a2e:9f4d:0:b0:2d0:89f7:3b39 with SMTP id v13csp1334580ljk;
+        Mon, 5 Feb 2024 00:20:48 -0800 (PST)
+X-Received: by 2002:a25:c702:0:b0:dc2:554f:ef44 with SMTP id w2-20020a25c702000000b00dc2554fef44mr15984688ybe.18.1707121248278;
+        Mon, 05 Feb 2024 00:20:48 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1707121248; cv=none;
+        d=google.com; s=arc-20160816;
+        b=LMcAfZ8YVobOg7MSCuYknyvx44pQ8A8FESchY8deNSTwmiNfj8g3ynKncDtrVS2AmI
+         oEjU+Ysyi5iT/e3bHRtPuY/AOUjEG0RSSoDhfYOCu832dkEMGXxG8zl6As+YX3wvwp9s
+         z+nK1jtESNuODQnRVGLTQ1bpAiTxGyu07RjW0ZRnF05vW21gnmfnVhe36J0/Yr89z9TR
+         jLuM3t6wu2LHdGI8hap6KH2js5EzbnmtBuwpDqbtMMCu5IKSpEmFMQO4BGVNC+1beDkT
+         +REf37zne9L/Di74AV7QM4+rs0RURI2Rdg958z8mwqyUR/OMGV0BGq73mtd6NJSNOXFE
+         mYug==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=pN0KvPSBC/Zj5Z0Yu3JKbSFLoTjGHZXWUMOPi5LUklc=;
+        fh=5kXuSHv8yG5hOrNxPqq6kbC4GmhFjnXz7uZHoCxSGMw=;
+        b=WffNaquLXYTiQ8ZNARODbh6AfmV46XMkrmc8jOi6AoeKAY9XsjuXUxuBrgjmhCy6tJ
+         CSjsbb4hNFpBewqk7JOMhA7bVXUWF8b5OHlZmVAGaeDC3w4X/69ERRSjZQdFvSp4xbuu
+         Q8dEIdzh1WR3pFTZR9U7DQ7mHJkGUGEDTtnmUqJ9cS5HTPvDBqX2tSxk9Cg0h8tBJLQU
+         oD9gfUtlRxrV0QncC+IIAYuACLz8d77lepruftoqG1O+jphrbA2B8VPaqYTEluDJuFZM
+         /assVAvrARFcj6QoZ4WUZKoCdCGrCWCLMsmLEsppb9aw9xNWoYFHdpeb0of5T6dkhg58
+         6XIw==;
+        darn=soulwallet.io
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=FljqqK1u;
+       spf=pass (google.com: domain of xurigong@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=xurigong@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Return-Path: <xurigong@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id t16-20020a252d10000000b00dc70078492esor1763961ybt.3.2024.02.05.00.20.48
+        for <suneal@soulwallet.io>
+        (Google Transport Security);
+        Mon, 05 Feb 2024 00:20:48 -0800 (PST)
+Received-SPF: pass (google.com: domain of xurigong@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=FljqqK1u;
+       spf=pass (google.com: domain of xurigong@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=xurigong@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707121247; x=1707726047; darn=soulwallet.io;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=pN0KvPSBC/Zj5Z0Yu3JKbSFLoTjGHZXWUMOPi5LUklc=;
+        b=FljqqK1uerQZkSNHgnuP/nrQHaAeGuDFDmQQQ31AW9fwGfYs3ZbbEPXhNnBGSa6zne
+         NzdpxGaj6L049LssTgXcHT0BG5+RmeIK67/GuANkU1VmgSQTbq5fFIpiX9kBMS0I1Gl8
+         z2cWvVfuZ3/9vutJ3zzMYo0oA97/K3YxYXex/GnJ5MVtwoOJOCIYyrfdVQ3kSSzn8Duy
+         GJxAlp0UIrqlKIW1/c/+uSQvAUUBA0q9GZf/svy41put2UKteeOzWcNkn0i8vIWAkuKL
+         MEi3ujP3s/6V+EtO5N4TvKvS4APpEHdx50ljleyAFT7KmnbKmcqEx2u61CgXo+E05yQM
+         ME+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707121247; x=1707726047;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pN0KvPSBC/Zj5Z0Yu3JKbSFLoTjGHZXWUMOPi5LUklc=;
+        b=syE6mxDIz/Brf5LWx60DBna74zJ5ZtTM+YHzzscuLWiWhK/qxhS4fJ/UyaTqV4sd/b
+         OmYSMLxahU65K1BJsWwJivfgLeh6NSXOqWF3Yj2P/IX+ITGXo2NTh4EdUAdfs2WBlAyP
+         bq3iHy+POqST04C2mmaxKPZ3sHZiYbw+jR4m0Qt+jLJO4y0mdWSK3C67QkzQOfqfK304
+         srAkVinmqOnLSVjRGaXmKHYM7TT3FOKfcR4AKCSjX1UJuyKiP2PYViYER0ZOFu6h3/ws
+         E4FpmemDmYya38RuBBzfnkZCHEpRZ0Orvi+CBzcuUN7cntX1RrkuJDm5T5bC9cauPtdM
+         Z2Ww==
+X-Gm-Message-State: AOJu0Yx/1MEX+rwwG2cyWerMvpz6loIGgfKwW06vwXilkFQXJRXfkfRU
+	V2RzD/JIyjXvUsjZQU+TB9FLU50Z9ZqOIUZZSqJMv6c2UFfUihjYuja3n+GJp90L7t9m8FUo+0B
+	9WypdCQv1mUZs6S9QEimBubcQSOrw6KzqJoLk
+X-Google-Smtp-Source: AGHT+IHGgALa11sVLJ/PMm5/v79UoCmrHj6TWmD6ApsIZQ6Qtu3CrT9zfhXm+LNeZ8C/kQe+VobuiJdYgRV0NuyPtj8=
+X-Received: by 2002:a25:ec01:0:b0:dbe:eae4:286a with SMTP id
+ j1-20020a25ec01000000b00dbeeae4286amr14178079ybh.51.1707121247357; Mon, 05
+ Feb 2024 00:20:47 -0800 (PST)
+MIME-Version: 1.0
+From: Suneal Gong <xurigong@gmail.com>
+Date: Mon, 5 Feb 2024 16:20:11 +0800
+Message-ID: <CALz_mE9GPHvjaGUPK6FDDig4hMR8e4+4nvpTmEy7G-SO8bdKjw@mail.gmail.com>
+Subject: Approve address 0x045ff23cf3413f6a355f0acc6ec6cb2721b95d99 for hash 0x38aa871e9f0d65113cc34018b17050c3c00dea62a4eb345fdde7f5efd6f7c064
+To: suneal@soulwallet.io
+Content-Type: multipart/alternative; boundary="000000000000898f7b06109e2379"
+
+--000000000000898f7b06109e2379
+Content-Type: text/plain; charset="UTF-8"
+
+
+
+--000000000000898f7b06109e2379
+Content-Type: text/html; charset="UTF-8"
+
+<div dir="ltr"><br></div>
+
+--000000000000898f7b06109e2379--

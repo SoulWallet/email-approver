@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "@zk-email/circuits": "3.2.2",
+    "@zk-email/contracts": "5.0.2",
+    "@zk-email/helpers": "3.0.2",
+    "circomlib": "^2.0.5"
+  },
+  "name": "email-approver",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
