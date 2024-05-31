@@ -1,7 +1,4 @@
-
-pragma circom 2.1.5;
-
-include "circomlib/circuits/poseidon.circom";
+pragma circom 2.1.6;
 
 // email_addr_commit = hash(rand, emailAddr||0..0)
 template EmailAddrCommit(num_ints) {

@@ -1,10 +1,4 @@
-
-pragma circom 2.1.5;
-
-include "circomlib/circuits/bitify.circom";
-include "circomlib/circuits/comparators.circom";
-include "circomlib/circuits/poseidon.circom";
-include "./constants.circom";
+pragma circom 2.1.6;
 
 // `in` is a big-endtian hex string of `out`.
 template Hex2Field(n) {
@@ -19,19 +13,6 @@ template Hex2Field(n) {
     }
     out <== sums[num_bytes];
 }
-
-
-// template Hex2Field() {
-//     signal input in[64];
-//     signal output out;
-//     signal bytes[32] <== Hex2Ints(64)(in);
-//     signal sums[33];
-//     sums[0] <== 0;
-//     for(var i = 0; i < 32; i++) {
-//         sums[i+1] <== 256 * sums[i] + bytes[i];
-//     }
-//     out <== sums[32];
-// }
 
 template Hex2Ints(n) {
     assert(n % 2 == 0);
