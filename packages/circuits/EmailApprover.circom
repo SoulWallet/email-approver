@@ -39,7 +39,7 @@ template EmailApprover(max_header_bytes, max_subject_bytes, n, k) {
     EV.emailHeaderLength <== email_header_length;
 
     pubkey_hash <== EV.pubkeyHash;
-    log("pubkey_hash", pubkey_hash);
+    // log("pubkey_hash", pubkey_hash);
 
     // 2. Verify sender_commitment = commit(sener_email_address, random)
     // extract sender email address
@@ -53,7 +53,7 @@ template EmailApprover(max_header_bytes, max_subject_bytes, n, k) {
     var num_email_addr_ints = computeIntChunkLength(email_addr_max_bytes);
     signal sender_email_addr_ints[num_email_addr_ints] <== PackBytes(email_addr_max_bytes)(sender_email_addr);
     sender_commitment <== EmailAddrCommit(num_email_addr_ints)(sender_email_commitment_rand, sender_email_addr_ints);
-    log("sender_commitment", sender_commitment);
+    // log("sender_commitment", sender_commitment);
 
     // 3. Verify email_sender domain
     signal domain_regex_out, domain_regex_reveal[email_addr_max_bytes];
@@ -65,7 +65,7 @@ template EmailApprover(max_header_bytes, max_subject_bytes, n, k) {
     var num_domain_len = computeIntChunkLength(domain_bytes_len);
     signal sender_domain_ints[num_domain_len] <== PackBytes(domain_bytes_len)(sender_domain_bytes);
     sender_domain_hash <== Poseidon(num_domain_len)(sender_domain_ints);
-    log("sender_domain_hash", sender_domain_hash);
+    // log("sender_domain_hash", sender_domain_hash);
 
     // 4. Verify control address and approval hash
     // extract subject
@@ -75,8 +75,8 @@ template EmailApprover(max_header_bytes, max_subject_bytes, n, k) {
     signal subject_all[max_subject_bytes];
     subject_all <== SelectRegexReveal(max_header_bytes, max_subject_bytes)(subject_regex_reveal, subject_idx);
     (control_address, approval_hash) <== SubjectApproval(max_subject_bytes)(subject_all);
-    log("control_address", control_address);
-    log("approval_hash", approval_hash[0], approval_hash[1]);
+    // log("control_address", control_address);
+    // log("approval_hash", approval_hash[0], approval_hash[1]);
 }
 
 

@@ -1,5 +1,9 @@
 pragma circom 2.1.6;
 
+include "circomlib/circuits/bitify.circom";
+include "circomlib/circuits/comparators.circom";
+include "circomlib/circuits/poseidon.circom";
+
 // `in` is a big-endtian hex string of `out`.
 template Hex2Field(n) {
     signal input in[n];
