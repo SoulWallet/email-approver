@@ -1,10 +1,4 @@
 {
-  "dependencies": {
-    "@zk-email/circuits": "3.2.2",
-    "@zk-email/contracts": "5.0.2",
-    "@zk-email/helpers": "3.0.2",
-    "circomlib": "^2.0.5"
-  },
   "name": "email-approver",
   "version": "1.0.0",
   "main": "index.js",
@@ -14,5 +8,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "@zk-email/circuits": "^6.1.1",
+    "@zk-email/contracts": "^6.1.1",
+    "@zk-email/helpers": "^6.1.1"
+  }
 }

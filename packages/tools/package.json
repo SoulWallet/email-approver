@@ -1,15 +1,22 @@
 {
-  "dependencies": {
-    "@zk-email/helpers": "3.0.2"
-  },
   "name": "email-approver-tools",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tsc": "tsc",
+    "ts-node": "ts-node",
+    "build": "tsc",
+    "start": "ts-node src/input.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@zk-email/helpers": "^6.1.1"
+  }
 }
