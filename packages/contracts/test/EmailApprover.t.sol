@@ -18,9 +18,14 @@ contract EmailApproverTest is Test {
 
         // deploy at 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a
         address controlAddress = 0xF62849F9A0B5Bf2913b396098F7c7019b51A820a;
-        address _emailApprover = address(
-            new EmailApprover(registry, verifier, senderCommitment)
+        address _emailApprover = address(new EmailApprover(registry, verifier));
+        // hack to bypass _disableInitializers
+        vm.store(
+            address(_emailApprover),
+            0xf0c57e16840df040f15088dc2f81fe391c3923bec73e23a9662efc9c229c6a00,
+            bytes32(uint256(0))
         );
+        EmailApprover(_emailApprover).initialize(senderCommitment);
         vm.etch(controlAddress, getCode(_emailApprover));
         emailApprover = EmailApprover(controlAddress);
     }
@@ -52,15 +57,8 @@ contract EmailApproverTest is Test {
         bytes32 pubkeyHash = 0x0ea9c777dc7110e5a9e89b13f0cfc540e3845ba120b2b6dc24024d61488d4788;
         bytes32 senderDomainHash = 0x2ace34e59a0b27c7142b61cef52c7770bb8a1414cf19145e69661826c127e104;
 
-        bytes memory signature = abi.encode(
-            proof,
-            pubkeyHash,
-            senderDomainHash
-        );
-        bytes4 magicValue = emailApprover.isValidSignature(
-            approvedHash,
-            signature
-        );
+        bytes memory signature = abi.encode(proof, pubkeyHash, senderDomainHash);
+        bytes4 magicValue = emailApprover.isValidSignature(approvedHash, signature);
         assert(magicValue == 0x1626ba7e);
     }
 }

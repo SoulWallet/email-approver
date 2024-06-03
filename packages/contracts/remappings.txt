@@ -1,2 +1,3 @@
 @openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/
-@zk-email/contracts/=node_modules/@zk-email/contracts/
+@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/
+@zk-email/contracts/=node_modules/@zk-email/contracts
