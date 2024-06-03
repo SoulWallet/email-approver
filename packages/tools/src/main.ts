@@ -9,6 +9,11 @@ async function main() {
     const _file_zkey = join(_parentDir, "zkpFiles", 'emailapprover_final.zkey');
     const _file_vkey = join(_parentDir, "zkpFiles", 'verification_key.json');
 
+    // to check hanging
+    // setInterval(() => {
+    //     console.log(new Date().toLocaleString());
+    // }, 1000);
+
     //#region EmailAddrCommit test
     {
         /*
@@ -25,17 +30,32 @@ async function main() {
     }
     //#endregion
 
-    //#region EmailProof test
+    const ParallelCount = 10;
+    let rapidsnarkProverBin: string | undefined = undefined;
+    // download from https://github.com/iden3/rapidsnark/releases/
+    rapidsnarkProverBin = "/usr/local/rapidsnark-macOS-arm64-v0.0.2/bin/prover";
 
-    const emailProof = new EmailProof(_file_wasm, _file_zkey, _file_vkey);
-    const commitment_rand = BigInt(12322);
-    const proof = await emailProof.proveFromEml(join(_parentDir, "emls", "example2.eml"), commitment_rand);
-    if (proof === null) {
-        throw new Error("EmailProof test failed");
+
+    const emailProof = new EmailProof(_file_wasm, _file_zkey, _file_vkey, rapidsnarkProverBin);
+    const emailProofTest = async () => {
+        const ts1 = Date.now();
+        const commitment_rand = BigInt(12322);
+        const proof = await emailProof.proveFromEml(join(_parentDir, "emls", "example2.eml"), commitment_rand);
+        if (proof === null) {
+            throw new Error("EmailProof test failed");
+        }
+        console.log("generate proof time:", Date.now() - ts1 + 'ms. via ' + (rapidsnarkProverBin === undefined ? 'snarkjs' : 'rapidsnark'));
     }
-    console.log("EmailProof test passed");
 
-    //#endregion
+    const arr = [];
+    for (let index = 0; index < ParallelCount; index++) {
+        arr.push(emailProofTest());
+    }
+    console.log("start parallel test: " + ParallelCount + " times");
+    const ts1 = Date.now();
+    await Promise.all(arr);
+    console.log("total time:", Date.now() - ts1 + 'ms. via ' + (rapidsnarkProverBin === undefined ? 'snarkjs' : 'rapidsnark'));
+
 
 }
 

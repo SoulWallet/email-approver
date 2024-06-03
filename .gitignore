@@ -70,3 +70,4 @@ book
 .vscode
 packages/tools/zkpFiles/verification_key.json
 /packages/tools/dist
+/packages/tools/.tmp
