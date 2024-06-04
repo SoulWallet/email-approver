@@ -19,6 +19,9 @@ packages/circuits/*_cpp
 packages/circuits/*_js
 *.zkey
 *.wtns
+.env_backend
+tools/emls/*.eml
+contracts/broadcast/*
 
 # Tools
 packages/tools/node_modules
@@ -27,7 +30,6 @@ packages/tools/node_modules
 packages/contracts/broadcast
 packages/contracts/cache
 packages/contracts/out
-packages/contracts/lib
 packages/contracts/cache
 packages/contracts/test/build_integration/*.json
 packages/contracts/test/build_integration/*.zkey

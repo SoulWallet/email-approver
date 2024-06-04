@@ -9,3 +9,23 @@ solc = "0.8.23"
 optimizer = true
 optimizer_runs = 100000
 via_ir = true
+
+# RPC config in .env file
+[rpc_endpoints]
+goerli = "${GOERLI_RPC_URL}"
+arbitrumgoerli = "${ARBITRUM_GOERLI_RPC_URL}"
+optimismgoerli = "${OPTIMISM_GOERLI_RPC_URL}"
+etherum = "${ETHERUM_RPC_URL}"
+arbitrum = "${ARBITRUM_RPC_URL}"
+optimism = "${OPTIMISM_RPC_URL}"
+scrollsepolia = "${SCROLL_SEPOLIA_RPC_URL}"
+basesepolia = "${BASE_SEPOLIA_RPC_URL}"
+
+[etherscan]
+goerli = { key = "${GOERLI_SCAN_API_KEY}", chain = "goerli" }
+optimismgoerli = { key = "${OPTIMISM_GOERLI_SCAN_API_KEY}", chain = "optimism-goerli" }
+scrollsepolia = { key = "#{SCROLL_SEPOLIA_SCAN_API_KEY}", url = "https://api-sepolia.scrollscan.com/api/", chain = 534351 }
+basesepolia = { key = "#{BASE_SEPOLIA_SCAN_API_KEY}", url = "https://api-sepolia.basescan.org/api/", chain = 84532 }
+
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options

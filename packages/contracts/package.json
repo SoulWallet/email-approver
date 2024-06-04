@@ -8,7 +8,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy:emailApprover": "source .env && forge script script/EmailApproverDeployer.s.sol:EmailApproverDeployer --ffi --slow --rpc-url $SEPOLIA_RPC_URL --broadcast --verify --etherscan-api-key $SEPOLIA_SCAN_API_KEY",
+    "deploy:createEmailApprover": "source .env && forge script script/CreateEmailApprover.s.sol:CreateEmailApprover --ffi --slow --rpc-url $SEPOLIA_RPC_URL --broadcast --verify --etherscan-api-key $SEPOLIA_SCAN_API_KEY"
   },
   "keywords": [],
   "author": "",

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.20;
 
-import {DKIMRegistry} from "@zk-email/contracts/DKIMRegistry.sol";
+import {DKIMRegistry} from "./DKIMRegistry.sol";
 import {IERC1271} from "@openzeppelin/contracts/interfaces/IERC1271.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
@@ -41,7 +41,7 @@ contract EmailApprover is Initializable, UUPSUpgradeable, IERC1271 {
     {
         // 1. Verify DKIM key
         // Note: this currently is not compitable with the current DKIMRegistry
-        // require(dkimRegistry.isDKIMPublicKeyHashValid(senderDomainHash, pubkeyHash), "invalid dkim signature");
+        require(dkimRegistry.isDKIMPublicKeyHashValid(senderDomainHash, pubkeyHash), "invalid dkim signature");
 
         uint256[6] memory signals;
         signals[0] = uint256(pubkeyHash);
