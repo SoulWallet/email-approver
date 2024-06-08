@@ -13,7 +13,13 @@ contract EmailApproverFactoryTest is Test {
 
     function setUp() public {
         verifier = new Groth16Verifier();
-        registry = new DKIMRegistry(address(this));
+        bytes32[] memory domainNameHashes = new bytes32[](1);
+        domainNameHashes[0] = 0x2ace34e59a0b27c7142b61cef52c7770bb8a1414cf19145e69661826c127e104;
+
+        bytes32[] memory publicKeyHashes = new bytes32[](1);
+        publicKeyHashes[0] = 0x0ea9c777dc7110e5a9e89b13f0cfc540e3845ba120b2b6dc24024d61488d4788;
+
+        registry = new DKIMRegistry(address(this), 1 days, domainNameHashes, publicKeyHashes);
 
         address _emailApprover = address(new EmailApprover(registry, verifier));
         emailApproverFactory = new EmailApproverFactory(_emailApprover);

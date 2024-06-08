@@ -10,11 +10,28 @@ import "./interfaces/IDKIMRegistry.sol";
  * Credit to the original authors and contributors.
  */
 contract DKIMRegistry is IDKIMRegistry, Ownable {
-    constructor(address _signer) Ownable(_signer) {}
+    uint256 public immutable TIMELOCK_DELAY;
+
+    constructor(
+        address _signer,
+        uint256 _timelockDelay,
+        bytes32[] memory domainNameHashes,
+        bytes32[] memory publicKeyHashes
+    ) Ownable(_signer) {
+        TIMELOCK_DELAY = _timelockDelay;
+        require(domainNameHashes.length == publicKeyHashes.length, "invalid contructor data");
+        for (uint256 i = 0; i < domainNameHashes.length; i++) {
+            dkimPublicKeyHashes[domainNameHashes[i]][publicKeyHashes[i]] = true;
+            emit DKIMPublicKeyHashRegistered(domainNameHashes[i], publicKeyHashes[i]);
+        }
+    }
 
     event DKIMPublicKeyHashRegistered(bytes32 domainNameHash, bytes32 publicKeyHash);
     event DKIMPublicKeyHashRevoked(bytes32 publicKeyHash);
     event DKIMDomainName(bytes32 domainNameHash, string domain);
+    event DKIMPublicKeyHashScheduled(bytes32 domainNameHash, bytes32 publicKeyHash, uint256 executeTime);
+    event DKIMPublicKeyHashesScheduled(bytes32 domainNameHash, bytes32[] publicKeyHashes, uint256 executeTime);
+    event DKIMPublicKeyHashCanceled(bytes32 publicKeyHash);
 
     // Mapping from domain name to DKIM public key hash
     mapping(bytes32 => mapping(bytes32 => bool)) public dkimPublicKeyHashes;
@@ -23,6 +40,14 @@ contract DKIMRegistry is IDKIMRegistry, Ownable {
 
     // DKIM public that are revoked (eg: in case of private key compromise)
     mapping(bytes32 => bool) public revokedDKIMPublicKeyHashes;
+
+    struct Timelock {
+        bytes32 domainNameHash;
+        bytes32 publicKeyHash;
+        uint256 executeTime;
+    }
+
+    mapping(bytes32 => Timelock) public timelocks;
 
     function isDKIMPublicKeyHashValid(bytes32 domainNameHash, bytes32 publicKeyHash) public view returns (bool) {
         if (revokedDKIMPublicKeyHashes[publicKeyHash]) {
@@ -41,18 +66,45 @@ contract DKIMRegistry is IDKIMRegistry, Ownable {
         emit DKIMDomainName(domainNameHash, domain);
     }
 
-    function setDKIMPublicKeyHash(bytes32 domainNameHash, bytes32 publicKeyHash) public onlyOwner {
+    function scheduleSetDKIMPublicKeyHash(bytes32 domainNameHash, bytes32 publicKeyHash) public onlyOwner {
+        require(dkimPublicKeyHashes[domainNameHash][publicKeyHash] == false, "already registered");
         require(!revokedDKIMPublicKeyHashes[publicKeyHash], "cannot set revoked pubkey");
-
-        dkimPublicKeyHashes[domainNameHash][publicKeyHash] = true;
-
-        emit DKIMPublicKeyHashRegistered(domainNameHash, publicKeyHash);
+        require(timelocks[publicKeyHash].executeTime == 0, "already scheduled");
+        uint256 executeTime = block.timestamp + TIMELOCK_DELAY;
+        timelocks[publicKeyHash] = Timelock(domainNameHash, publicKeyHash, executeTime);
+        emit DKIMPublicKeyHashScheduled(domainNameHash, publicKeyHash, executeTime);
     }
 
-    function setDKIMPublicKeyHashes(bytes32 domainNameHash, bytes32[] memory publicKeyHashes) public onlyOwner {
+    function executeSetDKIMPublicKeyHash(bytes32 publicKeyHash) public onlyOwner {
+        Timelock memory timelock = timelocks[publicKeyHash];
+        require(timelock.executeTime > 0, "no scheduled operation");
+        require(block.timestamp >= timelock.executeTime, "too early to execute");
+
+        dkimPublicKeyHashes[timelock.domainNameHash][publicKeyHash] = true;
+        delete timelocks[publicKeyHash];
+
+        emit DKIMPublicKeyHashRegistered(timelock.domainNameHash, publicKeyHash);
+    }
+
+    function cancelSetDKIMPublicKeyHash(bytes32 publicKeyHash) public onlyOwner {
+        Timelock memory timelock = timelocks[publicKeyHash];
+        require(timelock.executeTime > 0, "no scheduled operation");
+
+        delete timelocks[publicKeyHash];
+
+        emit DKIMPublicKeyHashCanceled(publicKeyHash);
+    }
+
+    function scheduleSetDKIMPublicKeyHashes(bytes32 domainNameHash, bytes32[] memory publicKeyHashes)
+        public
+        onlyOwner
+    {
         for (uint256 i = 0; i < publicKeyHashes.length; i++) {
-            setDKIMPublicKeyHash(domainNameHash, publicKeyHashes[i]);
+            scheduleSetDKIMPublicKeyHash(domainNameHash, publicKeyHashes[i]);
         }
+
+        uint256 executeTime = block.timestamp + TIMELOCK_DELAY;
+        emit DKIMPublicKeyHashesScheduled(domainNameHash, publicKeyHashes, executeTime);
     }
 
     function revokeDKIMPublicKeyHash(bytes32 publicKeyHash) public onlyOwner {
