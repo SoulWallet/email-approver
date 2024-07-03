@@ -17,7 +17,7 @@ Welcome to the SoulWallet - zkEmail Approver Phase 2 Trusted Setup Ceremony. Thi
    Run:
 
    ```shell
-   @soulwallet/phase2cli auth
+   phase2cli auth
    ```
 
    GitHub account requirements:
@@ -34,7 +34,7 @@ Welcome to the SoulWallet - zkEmail Approver Phase 2 Trusted Setup Ceremony. Thi
    Run:
 
    ```shell
-   @soulwallet/phase2cli contribute
+   phase2cli contribute
    ```
 
    The time required for this step varies depending on your network and computer performance, typically taking 5-20 minutes.
