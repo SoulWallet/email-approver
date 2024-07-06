@@ -34,10 +34,10 @@ Welcome to the SoulWallet - zkEmail Approver Phase 2 Trusted Setup Ceremony. Thi
    Run:
 
    ```shell
-   phase2cli-zkemailapprover contribute
+   phase2cli-zkemailapprover contribute -c emailapprover
    ```
 
-   The time required for this step varies depending on your network and computer performance, typically taking 5-20 minutes.
+   Please ensure you have a good network connection. During the process, you will need to download 1.25GB of files and upload 1.25GB of files. Additionally, you will need approximately 10-40 minutes of CPU computation time (depending on your computer). All of the above must be completed within 80 minutes for the contribution to be valid.
 
 5. **Done!**
 
