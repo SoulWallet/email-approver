@@ -4,12 +4,12 @@ Welcome to the SoulWallet - zkEmail Approver Phase 2 Trusted Setup Ceremony. Thi
 
 1. **Install [Node](https://nodejs.org/en/download/) (>= v16)**
 
-2. **Install `@soulwallet/phase2cli`**
+2. **Install `@soulwallet/phase2cli-zkemailapprover`**
 
    Run the following command:
 
    ```shell
-   npm install -g @soulwallet/phase2cli
+   npm install -g @soulwallet/phase2cli-zkemailapprover
    ```
 
 3. **Log in with your GitHub account**
@@ -17,14 +17,14 @@ Welcome to the SoulWallet - zkEmail Approver Phase 2 Trusted Setup Ceremony. Thi
    Run:
 
    ```shell
-   @soulwallet/phase2cli auth
+   phase2cli-zkemailapprover auth
    ```
 
    GitHub account requirements:
 
    ```ini
    Followers >= 1
-   Following >= 5
+   Following >= 2
    Public Repos >= 2
    Account age >= 1 month
    ```
@@ -34,10 +34,10 @@ Welcome to the SoulWallet - zkEmail Approver Phase 2 Trusted Setup Ceremony. Thi
    Run:
 
    ```shell
-   @soulwallet/phase2cli contribute
+   phase2cli-zkemailapprover contribute -c emailapprover
    ```
 
-   The time required for this step varies depending on your network and computer performance, typically taking 5-20 minutes.
+   During the process, you will need to download 1.2GB of files and upload 1.2GB of files. Additionally, you will need approximately 10-40 minutes of CPU computation time (depending on your computer). All of the above must be completed within 80 minutes for the contribution to be valid.
 
 5. **Done!**
 
