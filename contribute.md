@@ -2,7 +2,7 @@
 
 Welcome to the SoulWallet - zkEmail Approver Phase 2 Trusted Setup Ceremony. This ZK circuit will be used for the zkEmail social recovery feature of the smart contract wallet.
 
-1. **Install [Node](https://nodejs.org/en/download/) (>= v16)**
+1. **Install [Node](https://nodejs.org/en/download/) (> v16)**
 
 2. **Install `@soulwallet/phase2cli-zkemailapprover`**
 
