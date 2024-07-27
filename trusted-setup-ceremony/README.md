@@ -1,6 +1,6 @@
 # Ceremony Completed
 
-The ZK Setup Ceremony ended on UTC 2024-07-27.
+The ZK Trusted Setup Ceremony ended on UTC 2024-07-27.
 Thanks to the following individuals for their contributions:
 <table>
   <tr>
