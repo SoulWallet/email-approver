@@ -327,7 +327,7 @@ export class EmailProof {
                     ],
                     pubkeyHash: BigInt(publicSignals[0]),
                     senderDomainHash: BigInt(publicSignals[1]),
-                    senderCommitment: BigInt(publicSignals[2]),
+                    senderCommitment: BigInt(publicSignals[2]), 
                     controlAddress:
                         "0x" + "0".repeat(40 - _controlAddress.length) + _controlAddress,
                     approvedHash:

@@ -13,22 +13,22 @@ contract CounterTest is Test {
 
     function test_verifier() public view {
         uint[2] memory _pA = [
-            0x016576e2692e19de84b096d16db8cec5b74828cde3a75d03d02f11ea82e604d3,
-            0x1e4b16307377e52cc9d3b644014b4c21f2800c2eafda1bb22e961a9dcc448581
+            0x2817e92787efa427962b8f1fc163a8d1967b61de29ed2f8a7c33077660cd4de3,
+            0x122ffc6c6e086a151e936c51e4eadc85b9765d79a787952979f1561d491b7b7d
         ];
         uint[2][2] memory _pB = [
             [
-                0x289b24836918a2fd2f302e677e575216bba69e70a7343b5ba810b2df78a65f43,
-                0x073b279836e73efc9534c1fda906b16d6f176ec37fc8ca2201fe38a50e5eb441
+                0x1882a24d6b66e78df91c6f177c1f5d401f0394f184df61da935bb5ad3c571659,
+                0x1810d00832bb68c589372df7b5b282e9e155b8c7fed793bbf8123db0b6c7394a
             ],
             [
-                0x2dff3a37fe8bf88826e2697c5f4d1e650e2f885b48ae3694f6a9e2b33c4c2d1a,
-                0x2061f6acc8a7b2128af90fcb7757a1eef625987ffeaf5ba5f0bfe3d9308deda9
+                0x06c66aa32c38c231cb7ec9d9db7b6c68e73a4ba238bcdc20e2ee516c3701222c,
+                0x1a64fb1c0cd94c62098a4b0d8a06999dd97f250f3f160f9e2b5900a748974b02
             ]
         ];
         uint[2] memory _pC = [
-            0x1cfa9b5af2443b7b06c89f1745c6aff2d52a858aff5f9d444bf4fcef00d577fa,
-            0x2a9f6c250e5fada6d25f86b1fa1637317d2d68094a06cfb12d9aff1f99de23fa
+            0x1b71eea0511cf779e882680229813f977ec694d3c2e81780c2aa34d967f0bc7d,
+            0x2ce634b47ed9cc14d861cf6f2e9e15f2b4e960f59f1e7fff01cfb811be49cff0
         ];
         uint[6] memory _pubSignals = [
             0x0ea9c777dc7110e5a9e89b13f0cfc540e3845ba120b2b6dc24024d61488d4788,
