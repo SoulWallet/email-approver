@@ -1,6 +1,6 @@
 ## Email Approver
 
-The ZK Setup Ceremony ended on UTC 2024-07-27.
+The ZK Trusted Setup Ceremony ended on UTC 2024-07-27.
 Thanks to the following individuals for their contributions:
 <table>
   <tr>
@@ -48,9 +48,9 @@ Thanks to the following individuals for their contributions:
 
 **Circom Source Code:** [EmailApprover.circom](https://github.com/SoulWallet/email-approver/blob/30ca27e58dcc261aa3aafad2603124157783b640/packages/circuits/EmailApprover.circom)
 
-**Solidity Verifier:** [emailapprover_verifier.sol](emailapprover_verifier.sol)
+**Solidity Verifier:** [emailapprover_verifier.sol](trusted-setup-ceremony/emailapprover_verifier.sol)
 
-**Verification Key:** [emailapprover_vkey.json](emailapprover_vkey.json)
+**Verification Key:** [emailapprover_vkey.json](trusted-setup-ceremony/emailapprover_vkey.json)
 
 **Final ZKey:** [emailapprover_final.zkey](https://emailapprover-ph2-ceremony.s3.amazonaws.com/circuits/emailapprover/contributions/emailapprover_final.zkey)
 
