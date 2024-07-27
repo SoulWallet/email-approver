@@ -5,7 +5,7 @@
 
 Welcome to the SoulWallet - zkEmail Approver Phase 2 Trusted Setup Ceremony. This ZK circuit will be used for the zkEmail social recovery feature of the smart contract wallet.
 
-1. **Install [Node](https://nodejs.org/en/download/) (>= v16)**
+1. **Install [Node](https://nodejs.org/en/download/) (> v16)**
 
 2. **Install `@soulwallet/phase2cli-zkemailapprover`**
 
@@ -40,7 +40,7 @@ Welcome to the SoulWallet - zkEmail Approver Phase 2 Trusted Setup Ceremony. Thi
    phase2cli-zkemailapprover contribute -c emailapprover
    ```
 
-   During the process, you will need to download 1.2GB of files and upload 1.2GB of files. Additionally, you will need approximately 10-40 minutes of CPU computation time (depending on your computer). All of the above must be completed within 80 minutes for the contribution to be valid.
+   During the process, you will need to download 1.2GB of files and upload 1.2GB of files. Additionally, you will need approximately 10-40 minutes of CPU computation time (depending on your computer). All of the above must be completed within 60 minutes for the contribution to be valid.
 
 5. **Done!**
 
