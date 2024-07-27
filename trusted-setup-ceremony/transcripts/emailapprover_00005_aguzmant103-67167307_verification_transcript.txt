@@ -1,0 +1,37 @@
+[INFO]  snarkJS: Circuit Hash: 
+		5a4169ff ce6825b9 7e9ea696 715c1dae
+		9492ae1c 9d5e7de5 4f1bb4b2 ea06f885
+		158fc5d5 a1873a76 14e034c2 f635e5d6
+		043f560e 51a5651f d33f7226 b16737bf
+[INFO]  snarkJS: -------------------------
+[INFO]  snarkJS: contribution #5 aguzmant103-67167307:
+		114904d4 4ee1e1e2 23661049 5efacce1
+		85fa0b56 4859b2bc 2997007b 936815bd
+		0c11902a 3dae9f76 51f761ad d861e44b
+		a66eb101 542bdb73 24177d2a 75b297ea
+[INFO]  snarkJS: -------------------------
+[INFO]  snarkJS: contribution #4 Coriolan-dev-84125260:
+		e6a6313a ce214721 f0907206 274c46aa
+		70e9740a a84aeef8 2cbaeb88 00c61cf3
+		700946bb 856c8cd9 f478d122 c91ad59f
+		c2cda841 98768a67 84182428 0c677fb1
+[INFO]  snarkJS: -------------------------
+[INFO]  snarkJS: contribution #3 davidinsuomi-1399563:
+		8ad254f7 65fc96ab 01b412f8 f4f50984
+		07332c48 e9d543b7 80df73df 97d60bb7
+		806e3346 4a302e93 3b9ae911 6e0d71c7
+		4747cb5f cf25e66f e426d20d e807ae3c
+[INFO]  snarkJS: -------------------------
+[INFO]  snarkJS: contribution #2 zengjiajun0623-14859235:
+		49ce47ee 1b518cc6 56ace2ae 20daca68
+		a13376f8 29221e41 0ba2ef29 8eae0472
+		b1c08ccf 4c0afbd8 e654c8ba 930b3ce1
+		29fed948 7ca8e7ee 6633a90f 85ebbac1
+[INFO]  snarkJS: -------------------------
+[INFO]  snarkJS: contribution #1 jayden-sudo-5867853:
+		e402a65a 60b6cdba 561eb5b9 6e5c9e88
+		f1d47906 5d58212b 419231ae bf1a215b
+		fcba8366 e2f5175c 2b893bab 73fd5c2d
+		7cf9dfa1 ae5e2e07 21d28fea 5247cf8b
+[INFO]  snarkJS: -------------------------
+[INFO]  snarkJS: ZKey Ok!

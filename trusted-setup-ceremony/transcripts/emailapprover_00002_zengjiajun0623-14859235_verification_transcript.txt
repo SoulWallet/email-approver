@@ -1,0 +1,19 @@
+[INFO]  snarkJS: Circuit Hash: 
+		5a4169ff ce6825b9 7e9ea696 715c1dae
+		9492ae1c 9d5e7de5 4f1bb4b2 ea06f885
+		158fc5d5 a1873a76 14e034c2 f635e5d6
+		043f560e 51a5651f d33f7226 b16737bf
+[INFO]  snarkJS: -------------------------
+[INFO]  snarkJS: contribution #2 zengjiajun0623-14859235:
+		49ce47ee 1b518cc6 56ace2ae 20daca68
+		a13376f8 29221e41 0ba2ef29 8eae0472
+		b1c08ccf 4c0afbd8 e654c8ba 930b3ce1
+		29fed948 7ca8e7ee 6633a90f 85ebbac1
+[INFO]  snarkJS: -------------------------
+[INFO]  snarkJS: contribution #1 jayden-sudo-5867853:
+		e402a65a 60b6cdba 561eb5b9 6e5c9e88
+		f1d47906 5d58212b 419231ae bf1a215b
+		fcba8366 e2f5175c 2b893bab 73fd5c2d
+		7cf9dfa1 ae5e2e07 21d28fea 5247cf8b
+[INFO]  snarkJS: -------------------------
+[INFO]  snarkJS: ZKey Ok!
