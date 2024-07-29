@@ -139,11 +139,14 @@ export class DKIMKey {
             const pubKeyBigInt = BigInt(pubKeyData.n.toString());
             const pubKeyCircomInput = toCircomBigIntBytes(pubKeyBigInt);
             const publicKeyArr = pubKeyCircomInput.map(BigInt);
-            const publicKeyHash = '0x' + BigInt(await this.pubkeyHasher(121, 17, publicKeyArr)).toString(16);
+            const _publicKeyHash = BigInt(await this.pubkeyHasher(121, 17, publicKeyArr)).toString(16);
+            const publicKeyHash = '0x' + _publicKeyHash.padStart(64, '0');
+            const _domainHash = EmailProof.emailDomainHash(record.domain).toString(16);
+            const domainHash = '0x' + _domainHash.padStart(64, '0');
 
             list.push({
                 domain: record.domain,
-                domainHash: '0x' + EmailProof.emailDomainHash(record.domain).toString(16),
+                domainHash: domainHash,
                 selector: record.selector,
                 firstSeenAt: record.firstSeenAt,
                 lastSeenAt: record.lastSeenAt,
