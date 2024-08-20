@@ -1,6 +1,5 @@
 
 import axios from 'axios';
-import { promises as dns } from 'dns';
 import * as forge from 'node-forge';
 import { toCircomBigIntBytes, packBytesIntoNBytes } from "@zk-email/helpers";
 import { poseidon } from "@iden3/js-crypto";
@@ -14,51 +13,72 @@ export interface DKIMRecord {
     lastSeenAt: string
     value: string
 }
+
+export interface GooglePublicDNSResponse {
+    Status: number // 0:NOERROR, 3:NXDOMAIN
+    TC: boolean
+    RD: boolean
+    RA: boolean
+    AD: boolean
+    CD: boolean
+    Question: Question[]
+    Answer: Answer[]
+    Comment: string
+}
+
+export interface Question {
+    name: string
+    type: number // 5:CNAME
+}
+
+export interface Answer {
+    name: string
+    type: number // 5:CNAME, 16:TXT
+    TTL: number
+    data: string
+}
 export class DKIMKey {
 
-    private static async getCanonicalName(host: string): Promise<string | null> {
-        try {
-            const cname = await dns.resolveCname(host);
-            if (cname.length === 0) {
-                return null;
-            }
-            return cname[0];
-        } catch (err) {
-            console.error(`Failed to get CNAME for host ${host}:`, err);
+    private static async fetchGooglePublicDNS(domain: string, type: 'CNAME' | 'TXT'): Promise<Answer[] | null> {
+        const url = `https://dns.google/resolve?name=${encodeURIComponent(domain)}&type=${type}`;
+        // get json response
+        const response = await axios.get(url);
+        if (response.status !== 200) {
+            throw new Error(`Failed to fetch DNS record for domain ${domain}`);
+        }
+
+        const ret = response.data as GooglePublicDNSResponse;
+        if (ret.Status === 3 /* NXDOMAIN */) {
             return null;
         }
-    }
+        if (ret.Status !== 0) {
+            throw new Error(`Failed to fetch DNS record for domain ${domain}`);
+        }
+        if (ret.Answer.length === 0) {
+            return null;
+        }
+        return ret.Answer;
 
+    }
     private static async getDKIMPublicKey(domain: string, selector: string): Promise<string> {
         // check if the domain has a CNAME record
         const host = `${selector}._domainkey.${domain}`;
         const key = await this._getDKIMPublicKey(host);
-        if (key === '') {
-            const cname = await this.getCanonicalName(host);
-            if (cname !== null) {
-                return await this._getDKIMPublicKey(cname);
-            }
-        } else {
-            return key;
-        }
-        return '';
+        return key;
     }
 
     private static async _getDKIMPublicKey(hostname: string): Promise<string> {
-        try {
-            const txtRecords = await dns.resolveTxt(hostname);
-            if (txtRecords.length === 0) {
-                console.error(`No DKIM record found for host ${hostname}`);
-                return '';
-            }
-            if (txtRecords.length > 1) {
-                console.error(`Multiple DKIM records found for host ${hostname}`);
-            }
-            return txtRecords[0].join('');
-        } catch (err) {
-            console.error(`Failed to get DKIM public key ${hostname}`, err);
+        const records = await this.fetchGooglePublicDNS(hostname, 'TXT');
+        if (records === null || records.length === 0) {
             return '';
         }
+        for (let index = 0; index < records.length; index++) {
+            const record = records[index];
+            if (record.type === 16 /* TXT */) {
+                return record.data;
+            }
+        }
+        return '';
     }
 
 

@@ -9,7 +9,8 @@ const DOMAINS = [
     "outlook.com",
     "icloud.com",
     "aol.com",
-    "protonmail.com"
+    "protonmail.com",
+    "proton.me"
 ];
 
 const DKIM_ARCHIVE_FILE = "DKIM_archive.md";
